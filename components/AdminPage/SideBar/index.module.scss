@@ -3,6 +3,13 @@
   overflow-hidden text-ellipsis whitespace-nowrap tracking-widest
   flex justify-between items-center;
   // letter-spacing: 1px; 
+  span{
+    @apply select-none cursor-pointer;
+    transition: 0.3s;
+    &:hover{
+      @apply text-main-primary;
+    }
+  }
 }
 
 .Burger{

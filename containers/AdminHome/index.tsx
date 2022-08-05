@@ -2,10 +2,10 @@ import style from './index.module.scss'
 
 import SpaceDivider from '../../components/SpaceDivider'
 
-const AdminContainer = () => {
+const AdminHome = () => {
 
   return (
-    <div className={style.AdminContainer}>
+    <div className={style.AdminHome}>
       {/* <SpaceDivider distance='500px' />
 
       <SpaceDivider distance='500px' />
@@ -19,4 +19,4 @@ const AdminContainer = () => {
   )
 }
 
-export default AdminContainer
+export default AdminHome

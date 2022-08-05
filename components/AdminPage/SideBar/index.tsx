@@ -1,11 +1,9 @@
 import {
   ProSidebar, SidebarHeader,
   SidebarFooter, SidebarContent,
-  Menu, MenuItem, SubMenu
+  Menu
 } from 'react-pro-sidebar'
-import { useState, useContext } from 'react'
 import style from './index.module.scss'
-// import { SideBarContext } from '../../../layout/BaseLayout'
 import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
@@ -37,7 +35,11 @@ const SideBarHeader = ({
             </IconButton>
           </div>
           : <div className={style.Header}>
-            <span>後台管理系統</span>
+            <span
+              onClick={() => {
+                Router.push('/admin')
+              }}
+            >後台管理系統</span>
             <IconButton sx={{ color: '#adadad' }}
               onClick={() => { onCollapse() }}
             >
@@ -60,7 +62,6 @@ const SideBarFooter = () => {
 }
 
 const SideBar = () => {
-  // const { toggled, collapsed, page, onToggle, onCollapse, onPageChange } = useContext(SideBarContext)
   const dispatch = useDispatch()
   const { toggled, collapsed, page } = useSelector(selectSideBarConfig)
   return (
