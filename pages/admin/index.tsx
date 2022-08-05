@@ -2,8 +2,17 @@ import type { NextPage } from 'next'
 import { WithSideBarProtected } from '../../layout/BaseLayout'
 import AdminContainer from '../../containers/AdminContainer'
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { onPageChange } from '../../store/slice/sideBar'
 
 const Admin: NextPage = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(
+      onPageChange('none')
+    )
+  }, [])
   return (
     <>
       <Head>

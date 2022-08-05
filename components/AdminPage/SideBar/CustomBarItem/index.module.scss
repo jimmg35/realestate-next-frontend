@@ -1,0 +1,19 @@
+.MenuItem{
+  @apply select-none cursor-pointer rounded-md
+  mr-3 ml-2 my-1 overflow-hidden text-ellipsis whitespace-nowrap
+  tracking-widest flex items-center justify-start;
+  padding: 8px 35px 8px 15px;
+  @mixin highlighted {
+    color: #10B981;
+    background-color: rgba(255, 255, 255, 0.151);
+  }
+  &:hover{
+    @include highlighted;
+  }
+  &.focused{
+    @include highlighted;
+  }
+  span{
+    @apply ml-5;
+  }
+}

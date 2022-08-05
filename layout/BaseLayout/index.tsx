@@ -13,17 +13,21 @@ export const useAuth = () => {
   return useContext(AuthContext)
 }
 
-export const SideBarContext = createContext<{
-  toggled: boolean
-  collapsed: boolean
-  onToggle: (value: boolean) => void
-  onCollapse: () => void
-}>({
-  toggled: false,
-  collapsed: false,
-  onToggle: (value) => { },
-  onCollapse: () => { }
-})
+// export const SideBarContext = createContext<{
+//   toggled: boolean
+//   collapsed: boolean
+//   page: AdminPageType
+//   onToggle: (value: boolean) => void
+//   onCollapse: () => void
+//   onPageChange: (page: AdminPageType) => void
+// }>({
+//   toggled: false,
+//   collapsed: false,
+//   page: 'cases',
+//   onToggle: (value) => { },
+//   onCollapse: () => { },
+//   onPageChange: (value) => { }
+// })
 
 export interface ILayoutProps {
   children: React.ReactNode
@@ -194,13 +198,18 @@ export const WithNothingProtected = function <P extends { [k: string]: any }> (C
   return wrappedComponent
 }
 
+// export type AdminPageType = 'articles' | 'cases'
+
 export const WithSideBarProtected = function <P extends { [k: string]: any }> (Component: React.ComponentType<P>) {
   const wrappedComponent = (props: P) => {
     const dispatch = useDispatch()
     const userInfo = useSelector(selectUser)
     const [isAuthenticated, setisAuthenticated] = useState<boolean>(false)
-    const [toggled, settoggled] = useState<boolean>(true)
-    const [collapsed, setcollapsed] = useState<boolean>(false)
+
+    // const [toggled, settoggled] = useState<boolean>(true)
+    // const [collapsed, setcollapsed] = useState<boolean>(false)
+    // const [page, setpage] = useState<AdminPageType>('cases')
+
     useEffect(() => {
       const validateToken = async () => {
         if (userInfo.token === '') {
@@ -224,19 +233,21 @@ export const WithSideBarProtected = function <P extends { [k: string]: any }> (C
     return (
       <>
         <AuthContext.Provider value={{ isAuthenticated: isAuthenticated }}>
-          <SideBarContext.Provider value={{
+          {/* <SideBarContext.Provider value={{
             toggled: toggled,
             collapsed: collapsed,
+            page: page,
             onToggle: (value) => { settoggled(value) },
-            onCollapse: () => { setcollapsed(value => !value) }
-          }}>
-            <div className="admin-page">
-              <SideBar />
+            onCollapse: () => { setcollapsed(value => !value) },
+            onPageChange: (value) => { setpage(value) }
+          }}> */}
+          <div className="admin-page">
+            <SideBar />
 
-              {/* <TopBar /> */}
-              <Component {...props} />
-            </div>
-          </SideBarContext.Provider>
+            {/* <TopBar /> */}
+            <Component {...props} />
+          </div>
+          {/* </SideBarContext.Provider> */}
         </AuthContext.Provider>
       </>
     )

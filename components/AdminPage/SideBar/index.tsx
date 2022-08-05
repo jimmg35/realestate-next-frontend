@@ -5,12 +5,17 @@ import {
 } from 'react-pro-sidebar'
 import { useState, useContext } from 'react'
 import style from './index.module.scss'
-import { SideBarContext } from '../../../layout/BaseLayout'
+// import { SideBarContext } from '../../../layout/BaseLayout'
 import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArticleIcon from '@mui/icons-material/Article'
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork'
+import CustomBarItem from './CustomBarItem'
+import Router from 'next/router'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectSideBarConfig } from '../../../store/slice/sideBar'
+import { onToggle, onCollapse, onPageChange } from '../../../store/slice/sideBar'
 
 const SideBarHeader = ({
   collapsed,
@@ -55,37 +60,45 @@ const SideBarFooter = () => {
 }
 
 const SideBar = () => {
-  const { toggled, collapsed, onToggle, onCollapse } = useContext(SideBarContext)
-
+  // const { toggled, collapsed, page, onToggle, onCollapse, onPageChange } = useContext(SideBarContext)
+  const dispatch = useDispatch()
+  const { toggled, collapsed, page } = useSelector(selectSideBarConfig)
   return (
     <ProSidebar
       toggled={toggled}
       collapsed={collapsed}
       onToggle={(value) => {
-        onToggle(value)
+        dispatch(onToggle(value))
       }}
       breakPoint='md'
     >
 
-      <SideBarHeader collapsed={collapsed} onCollapse={onCollapse} />
+      <SideBarHeader collapsed={collapsed} onCollapse={() => {
+        dispatch(onCollapse(!collapsed))
+      }} />
 
       <SidebarContent>
         <Menu iconShape="square">
 
-          <div className={style.MenuItem}>
-            <MapsHomeWorkIcon />
-            <span>案件列表</span>
-          </div>
+          <CustomBarItem
+            title='案件列表'
+            icon={<MapsHomeWorkIcon />}
+            focused={page === 'cases'}
+            onClick={() => {
+              dispatch(onPageChange('cases'))
+              Router.push('/admin/cases')
+            }}
+          />
+          <CustomBarItem
+            title='文章列表'
+            icon={<ArticleIcon />}
+            focused={page === 'articles'}
+            onClick={() => {
+              dispatch(onPageChange('articles'))
+              Router.push('/admin/articles')
+            }}
+          />
 
-          <div className={style.MenuItem}>
-            <ArticleIcon />
-            <span>文章列表</span>
-          </div>
-
-          {/* <SubMenu title="Components">
-            <MenuItem>Component 1</MenuItem>
-            <MenuItem>Component 2</MenuItem>
-          </SubMenu> */}
         </Menu>
       </SidebarContent>
 
