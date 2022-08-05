@@ -1,0 +1,7 @@
+
+.RWDBurger{
+  @apply w-full p-6 hidden fixed top-0;
+  @media(max-width: 768px){
+    @apply block;
+  }
+}

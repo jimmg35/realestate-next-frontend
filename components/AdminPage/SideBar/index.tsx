@@ -17,10 +17,12 @@ import { onToggle, onCollapse, onPageChange } from '../../../store/slice/sideBar
 
 const SideBarHeader = ({
   collapsed,
-  onCollapse
+  onCollapse,
+  toHome
 }: {
   collapsed: boolean
   onCollapse: () => void
+  toHome: () => void
 }) => {
   return (
     <SidebarHeader>
@@ -38,6 +40,7 @@ const SideBarHeader = ({
             <span
               onClick={() => {
                 Router.push('/admin')
+                toHome()
               }}
             >後台管理系統</span>
             <IconButton sx={{ color: '#adadad' }}
@@ -74,9 +77,15 @@ const SideBar = () => {
       breakPoint='md'
     >
 
-      <SideBarHeader collapsed={collapsed} onCollapse={() => {
-        dispatch(onCollapse(!collapsed))
-      }} />
+      <SideBarHeader collapsed={collapsed}
+        onCollapse={() => {
+          dispatch(onCollapse(!collapsed))
+          dispatch(onToggle(false))
+        }}
+        toHome={() => {
+          dispatch(onToggle(false))
+        }}
+      />
 
       <SidebarContent>
         <Menu iconShape="square">
@@ -86,6 +95,7 @@ const SideBar = () => {
             icon={<MapsHomeWorkIcon />}
             focused={page === 'cases'}
             onClick={() => {
+              dispatch(onToggle(false))
               dispatch(onPageChange('cases'))
               Router.push('/admin/cases')
             }}
@@ -95,6 +105,7 @@ const SideBar = () => {
             icon={<ArticleIcon />}
             focused={page === 'articles'}
             onClick={() => {
+              dispatch(onToggle(false))
               dispatch(onPageChange('articles'))
               Router.push('/admin/articles')
             }}

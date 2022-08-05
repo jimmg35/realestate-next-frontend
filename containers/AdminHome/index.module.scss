@@ -1,3 +1,26 @@
 .AdminHome{
-    @apply w-screen h-screen bg-white overflow-y-auto;
+  @apply w-screen h-fit bg-main-primary overflow-y-auto
+  flex flex-col justify-center items-center min-h-screen;
+  .Title{
+    @apply text-5xl text-white 
+    tracking-wider font-bold select-none mb-6 mt-20;
+    @media(max-width: 768px){
+      @apply text-xl;
+    }
+  }
+  .CardGroup{
+    @apply flex flex-wrap justify-center gap-16 mb-6;
+    .ActionCard{
+      @apply w-[250px] h-[400px] rounded-md bg-transparent 
+      cursor-pointer flex flex-col justify-center items-center
+      text-main-primary bg-black bg-opacity-60;
+      transition: 0.3s;
+      &:hover{
+        @apply w-[260px] h-[410px] bg-white bg-opacity-90 text-black;
+      }
+      span{
+        @apply text-lg;
+      }
+    }
+  }
 }

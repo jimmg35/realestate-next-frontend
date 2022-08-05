@@ -1,0 +1,12 @@
+.ArticlesContainer{
+  @apply w-screen h-fit bg-main-primary overflow-y-auto
+  flex flex-col justify-center items-center min-h-screen;
+  .Title{
+    @apply text-5xl text-white 
+    tracking-wider font-bold select-none my-6;
+    
+    @media(max-width: 768px){
+      @apply text-xl;
+    }
+  }
+}
