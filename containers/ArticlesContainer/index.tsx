@@ -1,9 +1,9 @@
 import style from './index.module.scss'
 import RWDBurger from '../../components/AdminPage/RWDBurger'
 import Image from 'next/image'
-import { Grid } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { Grid, IconButton } from '@mui/material'
 
 const articleData = [
   {
@@ -92,8 +92,12 @@ const ArticlesContainer = () => {
                     >{article.title}</p>
                   </Grid>
                   <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                    <EditIcon />
-                    <DeleteIcon />
+                    <IconButton>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton>
+                      <DeleteIcon />
+                    </IconButton>
                   </Grid>
                 </Grid>
               </div>
