@@ -1,12 +1,23 @@
 .CasesContainer{
-  @apply w-screen h-fit bg-main-primary overflow-y-auto
+  @apply w-screen h-screen bg-main-primary overflow-y-auto
   flex flex-col justify-center items-center min-h-screen;
+  
   .Title{
     @apply text-5xl text-white 
-    tracking-wider font-bold select-none my-6;
-    
+    tracking-wider font-bold select-none p-2 pr-6
+    flex items-center justify-end w-full h-[10%];
     @media(max-width: 768px){
       @apply text-xl;
+    }
+  }
+
+  .Cases{
+    @apply h-[90%] w-full bg-white p-8;
+    .Container{
+      @apply w-full h-full bg-transparent overflow-y-auto;
+      // .test{
+      //   @apply w-full h-full max-h-full bg-black;
+      // }
     }
   }
 }
