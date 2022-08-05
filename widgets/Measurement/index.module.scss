@@ -1,0 +1,13 @@
+@import '../../styles/Animate.module.scss';
+.measurementWidget{
+    @apply p-0 bg-black flex shadow-md absolute right-[44px];
+    button{
+        @apply w-[36px] h-[36px];
+    }
+    &.show{ 
+        @include animate-css(bounceInRight, 0.6s);
+    }
+    &.hide{  
+        @include animate-css(bounceOutRight, 0.6s);
+    }
+}

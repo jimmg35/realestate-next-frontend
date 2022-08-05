@@ -1,0 +1,22 @@
+@import '../../styles/Animate.module.scss';
+@import '../../styles/TextNonSelect.module.scss';
+.widgetContainer{
+    @include textNoneSelectable;
+    @apply flex flex-row-reverse relative my-2;
+    .widgetExpand{
+        @apply w-[36px] h-[36px] p-1 bg-white shadow-md 
+        cursor-pointer border border-border m-0 flex items-center;
+        &:hover{
+            @apply border-black bg-gray-200;
+        }
+        &.focused{
+            @apply outline outline-2 outline-blue-500;
+        }
+        &.disabled{
+            @apply bg-gray-200 cursor-not-allowed;
+            &:hover{
+                @apply border-border bg-gray-200;
+            }
+        }
+    }
+}
