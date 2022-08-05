@@ -4,12 +4,13 @@ import {
   Menu, MenuItem, SubMenu
 } from 'react-pro-sidebar'
 import { useState, useContext } from 'react'
-import 'react-pro-sidebar/dist/css/styles.css'
 import style from './index.module.scss'
 import { SideBarContext } from '../../../layout/BaseLayout'
 import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import ArticleIcon from '@mui/icons-material/Article'
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork'
 
 const SideBarHeader = ({
   collapsed,
@@ -47,7 +48,7 @@ const SideBarFooter = () => {
   return (
     <SidebarFooter>
       <div className={style.Logout}>
-        <span>登出</span>
+        <span className={style.LogoutButton}>登出</span>
       </div>
     </SidebarFooter>
   )
@@ -70,11 +71,21 @@ const SideBar = () => {
 
       <SidebarContent>
         <Menu iconShape="square">
-          <MenuItem onClick={() => { onCollapse() }}>Dashboard</MenuItem>
-          <SubMenu title="Components">
+
+          <div className={style.MenuItem}>
+            <MapsHomeWorkIcon />
+            <span>案件列表</span>
+          </div>
+
+          <div className={style.MenuItem}>
+            <ArticleIcon />
+            <span>文章列表</span>
+          </div>
+
+          {/* <SubMenu title="Components">
             <MenuItem>Component 1</MenuItem>
             <MenuItem>Component 2</MenuItem>
-          </SubMenu>
+          </SubMenu> */}
         </Menu>
       </SidebarContent>
 

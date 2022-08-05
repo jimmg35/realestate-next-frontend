@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import 'animate.css'
+import '../components/AdminPage/SideBar/custom.scss'
 import { Provider } from 'react-redux'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'

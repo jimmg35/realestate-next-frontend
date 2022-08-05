@@ -7,7 +7,7 @@ interface ISpaceDividerProps {
 const SpaceDivider = ({
   distance = '5px'
 }: ISpaceDividerProps) => {
-  return <div style={{ height: distance, width: distance, backgroundColor: 'black' }}></div>
+  return <div style={{ height: distance, width: distance }}></div>
 }
 
 export default SpaceDivider
