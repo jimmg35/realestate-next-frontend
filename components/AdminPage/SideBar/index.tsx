@@ -43,6 +43,16 @@ const SideBarHeader = ({
   )
 }
 
+const SideBarFooter = () => {
+  return (
+    <SidebarFooter>
+      <div className={style.Logout}>
+        <span>登出</span>
+      </div>
+    </SidebarFooter>
+  )
+}
+
 const SideBar = () => {
   const { toggled, collapsed, onToggle, onCollapse } = useContext(SideBarContext)
 
@@ -55,13 +65,10 @@ const SideBar = () => {
       }}
       breakPoint='md'
     >
-      <SideBarHeader
-        collapsed={collapsed}
-        onCollapse={onCollapse}
-      />
+
+      <SideBarHeader collapsed={collapsed} onCollapse={onCollapse} />
 
       <SidebarContent>
-
         <Menu iconShape="square">
           <MenuItem onClick={() => { onCollapse() }}>Dashboard</MenuItem>
           <SubMenu title="Components">
@@ -69,11 +76,10 @@ const SideBar = () => {
             <MenuItem>Component 2</MenuItem>
           </SubMenu>
         </Menu>
-
       </SidebarContent>
 
-      <SidebarFooter>
-      </SidebarFooter>
+      <SideBarFooter />
+
     </ProSidebar>
   )
 }
